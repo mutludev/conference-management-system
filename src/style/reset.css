@@ -60,3 +60,7 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+#app {
+  height: 100%;
+}
