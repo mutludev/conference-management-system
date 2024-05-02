@@ -22,6 +22,7 @@ import Navbar from '@/components/Navbar.vue'
 }
 
 main {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
