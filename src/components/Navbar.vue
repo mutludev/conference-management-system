@@ -31,6 +31,7 @@ nav {
 button {
   width: 32px;
   height: 32px;
+  color: white;
   background-color: hsl(11, 100%, 60%);
   border-radius: 50%;
   cursor: pointer;
