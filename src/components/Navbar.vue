@@ -1,6 +1,5 @@
 <script setup>
-import { UserOutlined } from '@ant-design/icons-vue'
-import { SettingFilled } from '@ant-design/icons-vue'
+import { UserOutlined, SettingFilled } from '@ant-design/icons-vue'
 </script>
 
 <template>
