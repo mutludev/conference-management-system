@@ -8,8 +8,7 @@ import Navbar from '@/components/Navbar.vue'
     <Sidebar />
     <main>
       <Navbar />
-      <!-- This line may cause problems be AWARE -->
-      <content><RouterView /></content>
+      <content-area><RouterView /></content-area>
     </main>
   </div>
 </template>
@@ -27,7 +26,7 @@ main {
   flex-direction: column;
 }
 
-content {
+content-area {
   display: block;
   flex: 1;
   overflow: scroll;
