@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import HomeLayout from '../layouts/HomeLayout.vue'
+import AdminView from '../views/AdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
           path: '/',
           name: 'home-view',
           component: HomeView
+        },
+        {
+          path: '/admin',
+          name: 'admin-view',
+          component: AdminView
         }
       ]
     },
