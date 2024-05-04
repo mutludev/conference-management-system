@@ -59,7 +59,7 @@ aside {
   flex: 0;
   min-width: 200px;
   background-color: hsl(6, 100%, 96%);
-  color: black;
+  color: hsl(0, 0%, 20%);
 }
 
 aside.hidden {
