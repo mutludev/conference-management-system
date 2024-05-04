@@ -1,11 +1,13 @@
 <script setup>
+import { ref } from 'vue'
 import {
   HomeOutlined,
   SettingOutlined,
   LeftOutlined,
   ProjectOutlined,
   UserOutlined,
-  AppstoreOutlined
+  AppstoreOutlined,
+  RightOutlined
 } from '@ant-design/icons-vue'
 const links = [
   { name: 'Home', path: '/', icon: HomeOutlined },
@@ -13,26 +15,37 @@ const links = [
   { name: 'Attendees', path: '/attendees', icon: UserOutlined },
   { name: 'Organizers', path: '/organizers', icon: AppstoreOutlined }
 ]
+
+const utilLinks = [{ name: 'Settings', path: '/settings', icon: SettingOutlined }]
+
+const showSidebar = ref(true)
+
+function toggleSidebar() {
+  showSidebar.value = !showSidebar.value
+}
 </script>
 
 <template>
-  <aside>
+  <aside :class="{ hidden: !showSidebar }">
     <div class="logo">
-      <div>CMS-PLUS</div>
-      <button><LeftOutlined /></button>
+      <div v-if="showSidebar">CMS-PLUS</div>
+      <button @click="toggleSidebar">
+        <LeftOutlined v-if="showSidebar" />
+        <RightOutlined v-else />
+      </button>
     </div>
     <ul class="links">
       <RouterLink v-for="link in links" :to="link.path" :key="link.name">
         <li>
           <span class="icon"><component :is="link.icon" /></span>
-          <span class="link-name">{{ link.name }}</span>
+          <span v-if="showSidebar" class="link-name">{{ link.name }}</span>
         </li>
       </RouterLink>
       <div class="space"></div>
-      <RouterLink to="/settings">
+      <RouterLink v-for="link in utilLinks" :to="link.path" :key="link.name">
         <li>
-          <span class="icon"><SettingOutlined /></span>
-          <span class="link-name">Settings</span>
+          <span class="icon"><component :is="link.icon" /></span>
+          <span v-if="showSidebar" class="link-name">{{ link.name }}</span>
         </li>
       </RouterLink>
     </ul>
@@ -47,6 +60,27 @@ aside {
   min-width: 200px;
   background-color: hsl(6, 100%, 96%);
   color: black;
+}
+
+aside.hidden {
+  min-width: 70px;
+
+  & .logo {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  & button {
+    height: 44px;
+    width: 100%;
+  }
+  & .links li {
+    justify-content: center;
+  }
+
+  & .links .icon {
+    margin-right: 0;
+  }
 }
 
 .logo {
@@ -83,27 +117,27 @@ aside {
   padding: 0;
   padding-bottom: 10px;
   list-style: none;
-}
 
-.links a {
-  margin-inline: 10px;
-  text-decoration: none;
-  color: black;
-}
+  & a {
+    margin-inline: 10px;
+    text-decoration: none;
+    color: black;
+  }
 
-.links li:hover {
-  background-color: hsl(7, 100%, 93%);
-}
+  & li:hover {
+    background-color: hsl(7, 100%, 93%);
+  }
 
-.links li {
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
-  padding: 10px;
-}
+  & li {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+  }
 
-.links .icon {
-  margin-right: 10px;
+  & .icon {
+    margin-right: 10px;
+  }
 }
 
 .space {
