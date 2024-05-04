@@ -1,12 +1,19 @@
 <script setup>
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons-vue'
+
+defineProps({
+  memberCount: {
+    type: Number,
+    required: true
+  }
+})
 </script>
 
 <template>
   <div class="members-header">
     <h1 class="title">Members</h1>
     <div class="tools">
-      <div class="member-count">13 members</div>
+      <div class="member-count">{{ memberCount }} members</div>
       <a-input class="search" type="text" placeholder="Search">
         <template #prefix>
           <search-outlined />

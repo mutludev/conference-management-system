@@ -12,7 +12,7 @@ const members = [
 
 <template>
   <div class="admin-wrapper">
-    <MembersHeader />
+    <MembersHeader :member-count="members.length" />
     <div class="members">
       <MemberListItem
         class="list-item"
