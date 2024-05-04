@@ -139,6 +139,10 @@ aside.hidden {
     margin-right: 10px;
   }
 }
+.icon,
+.link-name {
+  color: hsl(0, 0%, 20%);
+}
 
 .space {
   flex-grow: 1;
