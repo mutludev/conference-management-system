@@ -20,12 +20,12 @@ import { SearchOutlined, PlusOutlined } from '@ant-design/icons-vue'
 <style scoped>
 .members-header {
   width: 100%;
-  height: 64px;
   padding: 16px;
   background-color: hsl(6, 100%, 96%);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -36,6 +36,7 @@ import { SearchOutlined, PlusOutlined } from '@ant-design/icons-vue'
 .tools {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
