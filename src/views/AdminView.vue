@@ -2,7 +2,7 @@
 import MembersHeader from '@/components/MembersHeader.vue'
 import MemberListItem from '@/components/MemberListItem.vue'
 
-const users = [
+const members = [
   { name: 'John Doe', email: 'johndoe@mutlu.dev', role: 'Admin' },
   { name: 'Jane Doe', email: 'janedoe@mutlu.dev', role: 'Organizer' },
   { name: 'John Smith', email: 'johnsmith@mutlu.dev', role: 'Reviewer' },
@@ -14,7 +14,12 @@ const users = [
   <div class="admin-wrapper">
     <MembersHeader />
     <div class="members">
-      <MemberListItem class="list-item" v-for="user in users" :data="user" :key="user.email" />
+      <MemberListItem
+        class="list-item"
+        v-for="member in members"
+        :data="member"
+        :key="member.email"
+      />
     </div>
   </div>
 </template>
