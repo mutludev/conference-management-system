@@ -20,7 +20,7 @@ import { SearchOutlined, PlusOutlined } from '@ant-design/icons-vue'
 <style scoped>
 .members-header {
   width: 100%;
-  padding: 16px;
+  padding: 16px 16px 0 16px;
   background-color: hsl(6, 100%, 96%);
   display: flex;
   justify-content: space-between;
