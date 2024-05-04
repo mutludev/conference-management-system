@@ -30,6 +30,9 @@ nav {
 button {
   width: 32px;
   height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   background-color: hsl(11, 100%, 60%);
   border-radius: 50%;
