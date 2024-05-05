@@ -29,7 +29,7 @@ const members = [
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: hsl(6 100% 96%);
+  background-color: hsl(6, 100%, 96%);
 }
 
 .members {
