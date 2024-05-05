@@ -28,5 +28,6 @@ content-area {
   display: block;
   flex: 1;
   overflow: scroll;
+  background-color: hsl(6, 100%, 96%);
 }
 </style>
