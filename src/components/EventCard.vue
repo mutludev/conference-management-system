@@ -117,6 +117,7 @@ let monthAbbr = computed(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  margin-top: auto;
 }
 
 .action {
