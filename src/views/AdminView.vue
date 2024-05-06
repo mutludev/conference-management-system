@@ -1,7 +1,21 @@
 <script setup>
 import MembersHeader from '@/components/MembersHeader.vue'
 import MemberListItem from '@/components/MemberListItem.vue'
+import { ref, computed } from 'vue'
 
+const searchQuery = ref('')
+
+const filteredMembers = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+  if (!query) return members
+  return members.filter((member) => {
+    return member.name.toLowerCase().includes(query)
+  })
+})
+
+function search(query) {
+  searchQuery.value = query
+}
 const members = [
   { name: 'John Doe', email: 'johndoe@mutlu.dev', role: 'Admin' },
   { name: 'Jane Doe', email: 'janedoe@mutlu.dev', role: 'Organizer' },
@@ -12,14 +26,19 @@ const members = [
 
 <template>
   <div class="admin-wrapper">
-    <MembersHeader :member-count="members.length" />
-    <div class="members">
+    <MembersHeader :member-count="members.length" @search="search" />
+    <div class="members" v-if="filteredMembers.length > 0">
       <MemberListItem
         class="list-item"
-        v-for="member in members"
+        v-for="member in filteredMembers"
         :data="member"
         :key="member.email"
       />
+    </div>
+    <div class="empty" v-else>
+      <div>
+        <a-empty />
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +53,7 @@ const members = [
 
 .members {
   padding: 0 16px;
+  overflow: scroll;
 }
 
 .list-item::after {
@@ -50,5 +70,12 @@ const members = [
   width: 100%;
   border-top: 1px solid hsl(0, 0%, 80%);
   margin: 10px 0;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
 }
 </style>

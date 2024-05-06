@@ -7,6 +7,8 @@ defineProps({
     required: true
   }
 })
+
+defineEmits(['search'])
 </script>
 
 <template>
@@ -14,7 +16,12 @@ defineProps({
     <h1 class="title">Members</h1>
     <div class="tools">
       <div class="member-count">{{ memberCount }} members</div>
-      <a-input class="search" type="text" placeholder="Search">
+      <a-input
+        class="search"
+        type="text"
+        placeholder="Search"
+        @change="(e) => $emit('search', e.target.value)"
+      >
         <template #prefix>
           <search-outlined />
         </template>
