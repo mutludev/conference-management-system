@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import HomeLayout from '../layouts/HomeLayout.vue'
 import AdminView from '../views/AdminView.vue'
+import AttendeeView from '../views/AttendeeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,11 @@ const router = createRouter({
           path: '/admin',
           name: 'admin-view',
           component: AdminView
+        },
+        {
+          path: '/attendee',
+          name: 'attendee-view',
+          component: AttendeeView
         }
       ]
     },
