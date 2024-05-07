@@ -21,7 +21,7 @@ const selectDecision = (decision) => {
   <div>
     <a-button @click="showModal">Review</a-button>
     <a-modal
-      :style="{ width: '1000px' }"
+      :style="{ width: '600px' }"
       v-model:open="open"
       title="Review Paper"
       okText="Submit"
