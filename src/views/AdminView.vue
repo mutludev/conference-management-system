@@ -1,5 +1,5 @@
 <script setup>
-import MembersHeader from '@/components/MembersHeader.vue'
+import GenericHeader from '@/components/GenericHeader.vue'
 import MemberListItem from '@/components/MemberListItem.vue'
 import { ref, computed } from 'vue'
 
@@ -22,11 +22,18 @@ const members = [
   { name: 'John Smith', email: 'johnsmith@mutlu.dev', role: 'Reviewer' },
   { name: 'Jane Smith', email: 'janesmith@mutlu.dev', role: 'Author' }
 ]
+
+const data = {
+  title: 'Members',
+  count: members.length,
+  text: ' members',
+  buttonText: 'Add Member'
+}
 </script>
 
 <template>
   <div class="admin-wrapper">
-    <MembersHeader :member-count="members.length" @search="search" />
+    <GenericHeader :data="data" @search="search" />
     <div class="members" v-if="filteredMembers.length > 0">
       <MemberListItem
         class="list-item"

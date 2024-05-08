@@ -1,6 +1,6 @@
 <script setup>
+import GenericHeader from '@/components/GenericHeader.vue'
 import PaperListItem from '@/components/PaperListItem.vue'
-import PapersHeader from '@/components/PapersHeader.vue'
 import { ref, computed } from 'vue'
 import papers from '../components/papers'
 
@@ -17,11 +17,17 @@ const filteredPapers = computed(() => {
 function search(query) {
   searchQuery.value = query
 }
+
+const data = {
+  title: 'Papers',
+  count: papers.length,
+  text: ' papers',
+}
 </script>
 
 <template>
   <div class="wrapper">
-    <PapersHeader :paper-count="papers.length" @search="search" />
+    <GenericHeader :data="data" @search="search" />
     <div class="papers" v-if="filteredPapers.length > 0">
       <PaperListItem
         class="list-item"

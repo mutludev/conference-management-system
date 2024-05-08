@@ -1,21 +1,27 @@
 <script setup>
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons-vue'
+import { useToast } from 'vue-toastification';
 
 defineProps({
-  memberCount: {
-    type: Number,
+  data: {
+    type: Object,
     required: true
   }
 })
 
 defineEmits(['search'])
+
+const toast = useToast()
+const error = () => {
+  toast.error('This feature is not implemented yet')
+}
 </script>
 
 <template>
-  <div class="members-header">
-    <h1 class="title">Members</h1>
+  <div class="header">
+    <h1 class="title">{{ data.title }}</h1>
     <div class="tools">
-      <div class="member-count">{{ memberCount }} members</div>
+      <div class="count">{{ data.count + data.text }}</div>
       <a-input
         class="search"
         type="text"
@@ -26,13 +32,13 @@ defineEmits(['search'])
           <search-outlined />
         </template>
       </a-input>
-      <a-button class="add-button"><PlusOutlined /> Add member</a-button>
+      <a-button class="add-button" v-if="data.buttonText" @click ="error"><PlusOutlined /> {{ data.buttonText }}</a-button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.members-header {
+.header {
   width: 100%;
   padding: 16px 16px 0 16px;
   background-color: hsl(6, 100%, 96%);
@@ -54,7 +60,7 @@ defineEmits(['search'])
   gap: 15px;
 }
 
-.member-count {
+.count {
   color: hsl(0, 0%, 20%);
   font-size: 14px;
 }
