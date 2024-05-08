@@ -10,7 +10,10 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-app.use(Toast)
+app.use(Toast, {
+  pauseOnHover: false,
+  timeout: 2000,
+})
 app.use(router)
 app.use(createPinia())
 
