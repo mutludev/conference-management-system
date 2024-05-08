@@ -1,6 +1,7 @@
 <script setup>
 import { UserDeleteOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { h, ref } from 'vue'
+import { useToast } from 'vue-toastification';
 
 defineProps({
   data: {
@@ -10,6 +11,11 @@ defineProps({
 })
 
 const roles = ref(['Admin', 'Organizer', 'Reviewer', 'Author', 'Presenter', 'Attendee'])
+
+const toast = useToast()
+const error = () => {
+  toast.error('This feature is not implemented yet')
+}
 </script>
 
 <template>
@@ -27,7 +33,7 @@ const roles = ref(['Admin', 'Organizer', 'Reviewer', 'Author', 'Presenter', 'Att
           {{ role }}
         </a-select-option>
       </a-select>
-      <a-button class="delete" :icon="h(UserDeleteOutlined)" />
+      <a-button class="delete" @click="error" :icon="h(UserDeleteOutlined)" />
     </div>
   </div>
 </template>
