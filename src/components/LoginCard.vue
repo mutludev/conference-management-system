@@ -1,13 +1,15 @@
 <script setup>
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
+import { useUserStore } from '@/stores/userStore'
 import { ref } from 'vue'
+const userStore = useUserStore()
 let formState = ref({
   email: '',
   password: ''
 })
 
-function onSubmit(value) {
-  console.log(value)
+async function onSubmit(value) {
+  userStore.login(value.email, value.password)
 }
 </script>
 
