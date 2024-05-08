@@ -6,6 +6,7 @@ import HomeLayout from '../layouts/HomeLayout.vue'
 import AdminView from '../views/AdminView.vue'
 import AttendeeView from '../views/AttendeeView.vue'
 import ReviewerView from '../views/ReviewerView.vue'
+import OrganizerView from '@/views/OrganizerView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,10 @@ const router = createRouter({
           path: '/reviewer',
           name: 'reviewer',
           component: ReviewerView
+        },
+        { path: '/organizer',
+          name: 'organizer-view', 
+          component: OrganizerView 
         }
       ]
     },
