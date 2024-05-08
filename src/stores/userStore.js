@@ -30,7 +30,7 @@ export const useUserStore = defineStore({
         await api.logout()
         this.user = null
         toast.success('Logout successful')
-        this.router.push('/')
+        this.router.push('/login')
       } catch (error) {
         toast.error('Logout failed')
       } finally {
