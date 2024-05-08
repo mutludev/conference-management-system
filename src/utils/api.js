@@ -20,7 +20,16 @@ async function fetchUser() {
   }
 }
 
+async function logout() {
+  try {
+    await axios.post('/auth/logout')
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 export default {
   login,
-  fetchUser
+  fetchUser,
+  logout
 }
