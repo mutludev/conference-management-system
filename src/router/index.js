@@ -33,7 +33,7 @@ const router = createRouter({
         },
         {
           path: '/reviewer',
-          name: 'reviewer',
+          name: 'reviewer-view',
           component: ReviewerView
         },
         { path: '/organizer',
