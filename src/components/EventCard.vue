@@ -6,6 +6,23 @@ const props = defineProps({
   data: {
     type: Object,
     required: true
+  },
+  action: {
+    type: Array,
+    default: () => [
+      {
+        text: 'Buy Ticket',
+        func: () => {
+          console.log('Buy Ticket')
+        }
+      },
+      {
+        text: 'View Details',
+        func: () => {
+          console.log('View Details')
+        }
+      }
+    ]
   }
 })
 
@@ -61,8 +78,10 @@ let monthAbbr = computed(() => {
       </div>
     </div>
     <div class="actions">
-      <a-button class="action" type="primary">Buy Tickets</a-button>
-      <a-button class="action">View Details</a-button>
+      <a-button class="action" type="primary" @click="action[0].func">{{
+        action[0].text
+      }}</a-button>
+      <a-button class="action" @click="action[1].func"> {{ action[1].text }}</a-button>
     </div>
   </div>
 </template>
