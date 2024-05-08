@@ -1,6 +1,7 @@
 <script setup>
 import { CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons-vue'
 import { computed, defineProps } from 'vue'
+import { useToast } from 'vue-toastification';
 
 const props = defineProps({
   data: {
@@ -13,13 +14,15 @@ const props = defineProps({
       {
         text: 'Buy Ticket',
         func: () => {
-          console.log('Buy Ticket')
+          const toast = useToast()
+          toast.error('Buy Ticket is not implemented yet')
         }
       },
       {
         text: 'View Details',
         func: () => {
-          console.log('View Details')
+          const toast = useToast()
+          toast.error('View Details is not implemented yet')
         }
       }
     ]
