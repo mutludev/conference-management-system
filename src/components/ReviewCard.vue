@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, h } from 'vue'
+import {FileSearchOutlined } from '@ant-design/icons-vue'
+
 const open = ref(false)
 
 const showModal = () => {
@@ -19,7 +21,7 @@ const selectDecision = (decision) => {
 
 <template>
   <div>
-    <a-button @click="showModal">Review</a-button>
+    <a-button class="review" @click="showModal" :icon="h(FileSearchOutlined)">Review</a-button>
     <a-modal
       :style="{ width: '600px' }"
       v-model:open="open"
@@ -69,6 +71,23 @@ const selectDecision = (decision) => {
 .status-wrapper {
   display: flex;
   gap: 10px;
+}
+
+.review {
+  border: none;
+  box-shadow: none;
+  background-color: hsl(11 100% 60%);
+  color: white;
+}
+
+.review:hover {
+  background-color: hsl(11 100% 55%);
+  color: white;
+}
+
+.review:active {
+  background-color: hsl(11 100% 50%);
+  color: white;
 }
 
 .choice {
