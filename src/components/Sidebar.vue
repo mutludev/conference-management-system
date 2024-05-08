@@ -1,28 +1,33 @@
 <script setup>
-import { ref } from 'vue'
-import {
-  HomeOutlined,
-  SettingOutlined,
-  LeftOutlined,
-  ProjectOutlined,
-  UserOutlined,
-  AppstoreOutlined,
-  RightOutlined
-} from '@ant-design/icons-vue'
-const links = [
-  { name: 'Home', path: '/', icon: HomeOutlined },
-  { name: 'Events', path: '/events', icon: ProjectOutlined },
-  { name: 'Attendees', path: '/attendees', icon: UserOutlined },
-  { name: 'Organizers', path: '/organizers', icon: AppstoreOutlined }
+import { onMounted, ref, watch } from 'vue'
+import { SettingOutlined, LeftOutlined, RightOutlined, LogoutOutlined } from '@ant-design/icons-vue'
+import { linkMapping } from '@/utils/linkMapping'
+import { useUserStore } from '@/stores/userStore'
+const userStore = useUserStore()
+
+const utilLinks = [
+  { name: 'Settings', path: '/settings', icon: SettingOutlined },
+  { name: 'Logout', path: '', icon: LogoutOutlined, action: logout }
 ]
 
-const utilLinks = [{ name: 'Settings', path: '/settings', icon: SettingOutlined }]
-
+const links = ref([])
 const showSidebar = ref(true)
 
 function toggleSidebar() {
   showSidebar.value = !showSidebar.value
 }
+
+async function logout() {
+  await userStore.logout()
+}
+
+function updateLinks() {
+  links.value = linkMapping[userStore.user?.role] || []
+}
+
+watch(() => userStore.user, updateLinks)
+
+onMounted(updateLinks)
 </script>
 
 <template>
@@ -42,7 +47,7 @@ function toggleSidebar() {
         </li>
       </RouterLink>
       <div class="space"></div>
-      <RouterLink v-for="link in utilLinks" :to="link.path" :key="link.name">
+      <RouterLink v-for="link in utilLinks" :to="link.path" @click="link.action" :key="link.name">
         <li>
           <span class="icon"><component :is="link.icon" /></span>
           <span v-if="showSidebar" class="link-name">{{ link.name }}</span>
