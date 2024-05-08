@@ -20,7 +20,7 @@ defineProps({
     </div>
     <div class="right">
       <ReviewCard />
-      </div>
+    </div>
   </div>
 </template>
 
