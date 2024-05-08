@@ -1,6 +1,6 @@
 <script setup>
-import { FilePdfOutlined, FileSearchOutlined } from '@ant-design/icons-vue'
-import { h } from 'vue'
+import { FilePdfOutlined } from '@ant-design/icons-vue'
+import ReviewCard from './ReviewCard.vue'
 
 defineProps({
   data: {
@@ -19,8 +19,8 @@ defineProps({
       <div>{{ data.title }}</div>
     </div>
     <div class="right">
-      <a-button class="review" :icon="h(FileSearchOutlined)">Review</a-button>
-    </div>
+      <ReviewCard />
+      </div>
   </div>
 </template>
 
@@ -51,23 +51,6 @@ defineProps({
 
 .select {
   width: 103px;
-}
-
-.review {
-  border: none;
-  box-shadow: none;
-  background-color: hsl(11 100% 60%);
-  color: white;
-}
-
-.review:hover {
-  background-color: hsl(11 100% 55%);
-  color: white;
-}
-
-.review:active {
-  background-color: hsl(11 100% 50%);
-  color: white;
 }
 
 hr {
