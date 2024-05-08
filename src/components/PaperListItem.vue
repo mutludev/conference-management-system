@@ -19,7 +19,7 @@ defineProps({
       <div>{{ data.title }}</div>
     </div>
     <div class="right">
-      <a-button class="review" :icon="h(FileSearchOutlined)" />
+      <a-button class="review" :icon="h(FileSearchOutlined)">Review</a-button>
     </div>
   </div>
 </template>
