@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:3000/api'
+axios.defaults.baseURL = import.meta.env.BACKEND_URI || 'http://localhost:3000'
 axios.defaults.withCredentials = true
 
 async function login(email, password) {
