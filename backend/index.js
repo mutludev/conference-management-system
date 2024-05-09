@@ -25,7 +25,7 @@ app.use(
     name: "session",
     keys: [process.env.COOKIE_KEY],
     sameSite: "none",
-    secure: true
+    secure: true,
   })
 );
 
@@ -34,7 +34,7 @@ app.use(express.json());
 app.use("/api", api);
 app.use(errorHandler);
 
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
