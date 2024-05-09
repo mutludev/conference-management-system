@@ -1,14 +1,13 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { UserOutlined, LeftOutlined, RightOutlined, LogoutOutlined } from '@ant-design/icons-vue'
-import { linkMapping } from '@/utils/linkMapping'
-import { useToast } from 'vue-toastification';
+import { linkMapping } from '@/utils/navigationMapping'
 import { useUserStore } from '@/stores/userStore'
+import { usePageStore } from '@/stores/pageStore'
+const pageStore = usePageStore()
 const userStore = useUserStore()
-const toast = useToast()
-
-const links = ref([])
 const showSidebar = ref(true)
+let links = computed(() => linkMapping[userStore.user?.role] || [])
 
 function toggleSidebar() {
   showSidebar.value = !showSidebar.value
@@ -17,14 +16,6 @@ function toggleSidebar() {
 async function logout() {
   await userStore.logout()
 }
-
-function updateLinks() {
-  links.value = linkMapping[userStore.user?.role] || []
-}
-
-watch(() => userStore.user, updateLinks)
-
-onMounted(updateLinks)
 </script>
 
 <template>
@@ -38,25 +29,25 @@ onMounted(updateLinks)
     </div>
     <div class="role" v-if="showSidebar">{{ userStore.user?.role }}</div>
     <ul class="links" v-if="links.length > 0">
-      <RouterLink v-for="link in links" :to="link.path" :key="link.name">
+      <a v-for="link in links" :key="link.name" @click="pageStore.changePage(link.path)">
         <li>
           <span class="icon"><component :is="link.icon" /></span>
           <span v-if="showSidebar" class="link-name">{{ link.name }}</span>
         </li>
-      </RouterLink>
+      </a>
       <div class="space"></div>
-      <RouterLink to="">
+      <a>
         <li>
           <span class="icon"><UserOutlined /></span>
-          <span v-if="showSidebar" class="link-name">{{ userStore.user?.name }}</span>
+          <span v-if="showSidebar" class="link-name">{{ userStore.user?.name || 'John Doe' }}</span>
         </li>
-      </RouterLink>
-      <RouterLink to="" @click="logout">
+      </a>
+      <a @click="logout">
         <li>
           <span class="icon"><LogoutOutlined /></span>
           <span v-if="showSidebar" class="link-name">Logout</span>
         </li>
-      </RouterLink>
+      </a>
     </ul>
   </aside>
 </template>
@@ -129,6 +120,7 @@ aside.hidden {
   list-style: none;
 
   & a {
+    cursor: pointer;
     margin-inline: 10px;
     text-decoration: none;
     color: black;

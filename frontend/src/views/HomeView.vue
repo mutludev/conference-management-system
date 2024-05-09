@@ -1,33 +1,18 @@
 <script setup>
-import { useRouter } from 'vue-router'
-const router = useRouter()
-import AdminView from '../views/AdminView.vue'
-import AttendeeView from '../views/AttendeeView.vue'
-import ReviewerView from '../views/ReviewerView.vue'
-import OrganizerView from '@/views/OrganizerView.vue'
-import AuthorEventView from '@/views/AuthorEventView.vue'
-
-const roleComponentMapping = {
-  admin: AdminView,
-  attendee: AttendeeView,
-  reviewer: ReviewerView,
-  organizer: OrganizerView,
-  author: AuthorEventView
-}
-
-import { onMounted, shallowRef } from 'vue'
+import { computed, onMounted } from 'vue'
+import { roleComponentMapping } from '@/utils/navigationMapping'
 import { useUserStore } from '@/stores/userStore'
+import { usePageStore } from '@/stores/pageStore'
+const pageStore = usePageStore()
 const userStore = useUserStore()
-const currentView = shallowRef(null)
 
+const currentView = computed(() => {
+  if (!userStore.user?.role) return null
+  return roleComponentMapping[userStore.user?.role][pageStore.page]
+})
 
 onMounted(async () => {
-  const role = await userStore.getRole()
-  if (!role) {
-    router.push('/login')
-    return
-  }
-  currentView.value = roleComponentMapping[role]
+  await userStore.getRole()
 })
 </script>
 
