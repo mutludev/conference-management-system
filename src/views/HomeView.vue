@@ -26,12 +26,18 @@ onMounted(async () => {
     return
   }
   currentView.value = roleComponentMapping[role]
-  console.log(role)
 })
 </script>
 
 <template>
   <component v-if="currentView" :is="currentView" />
-  <div v-else>Loading...</div>
+  <div class="spinner" v-else><a-spin size="large" tip="Loading..."/></div>
 </template>
-<style scoped></style>
+<style scoped>
+.spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
