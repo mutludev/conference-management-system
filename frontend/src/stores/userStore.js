@@ -41,7 +41,6 @@ export const useUserStore = defineStore({
       this.loading = true
       try {
         let response = await api.fetchUser()
-        console.log(response)
         this.user = response
       } catch (error) {
         this.user = null
@@ -50,8 +49,6 @@ export const useUserStore = defineStore({
       }
     },
     async getRole() {
-      console.log('here')
-      console.log(this.user)
       if (this.user) {
         return this.user.role
       }
