@@ -61,6 +61,10 @@ function onSubmit(value) {
       </a-form-item>
       <button class="register-button" type="submit">Register</button>
     </a-form>
+    <span class="footer">
+      Already have an account?&nbsp;
+      <router-link to="/login">Login</router-link>
+    </span>
   </div>
 </template>
 
@@ -128,5 +132,23 @@ function onSubmit(value) {
 
 .register-button:active {
   background-color: hsl(11, 100%, 50%);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(0, 0%, 20%);
+  width: 100%;
+}
+
+.footer a {
+  color: hsl(11, 100%, 60%);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
 </style>
