@@ -2,11 +2,18 @@
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/userStore'
 import { ref } from 'vue'
+import { useToast } from 'vue-toastification'
+
 const userStore = useUserStore()
 let formState = ref({
   email: '',
   password: ''
 })
+
+const toast = useToast()
+const error = () => {
+  toast.error('This feature is not implemented yet')
+}
 
 async function onSubmit(value) {
   userStore.login(value.email, value.password)
@@ -54,6 +61,10 @@ async function onSubmit(value) {
       </a-form-item>
       <button class="login-button" type="submit">Log In</button>
     </a-form>
+    <div class="footer">
+      <a @click="error">Forgot your password?</a>
+      <span>New to CMS-PLUS? <router-link to="/register">Register</router-link> </span>
+    </div>
   </div>
 </template>
 
@@ -121,5 +132,26 @@ async function onSubmit(value) {
 
 .login-button:active {
   background-color: hsl(11, 100%, 50%);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.footer a {
+  color: hsl(11, 100%, 60%);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer span {
+  color: hsl(0, 0%, 20%);
 }
 </style>
