@@ -31,7 +31,7 @@ onMounted(async () => {
 
 <template>
   <component v-if="currentView" :is="currentView" />
-  <div class="spinner" v-else><a-spin size="large" tip="Loading..."/></div>
+  <div class="spinner" v-else><a-spin size="large" tip="Loading..." /></div>
 </template>
 <style scoped>
 .spinner {
