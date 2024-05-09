@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { InboxOutlined } from '@ant-design/icons-vue'
+import { UploadOutlined } from '@ant-design/icons-vue'
 let formState = ref({
   degreeProgram: '',
   title: '',
@@ -51,7 +51,7 @@ const open = defineModel()
         label="Full Paper"
         :rules="[{ required: true, message: 'Please upload your paper!' }]"
       >
-        <a-upload-dragger
+        <a-upload
           v-model:value="formState.paper"
           v-model:fileList="fileList"
           name="file"
@@ -61,15 +61,8 @@ const open = defineModel()
           @change="handleChange"
           @drop="handleDrop"
         >
-          <p class="ant-upload-drag-icon">
-            <inbox-outlined></inbox-outlined>
-          </p>
-          <p class="ant-upload-text">Click or drag file to this area to upload</p>
-          <p class="ant-upload-hint">
-            Support for a single upload. Strictly prohibit from uploading company data or other band
-            files. File upload only supports pdf format.
-          </p>
-        </a-upload-dragger>
+          <a-button><UploadOutlined />Upload</a-button>
+        </a-upload>
       </a-form-item>
       <button type="submit">Submit</button>
     </a-form>
