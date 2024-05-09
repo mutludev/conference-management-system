@@ -56,6 +56,7 @@ export const useUserStore = defineStore({
         await this.fetchUser()
         return this.user.role
       } catch (error) {
+        this.router.push('/login')
         return null
       }
     }
