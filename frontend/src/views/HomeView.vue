@@ -15,11 +15,11 @@ const roleComponentMapping = {
   author: AuthorEventView
 }
 
-import { onMounted, ref } from 'vue'
+import { onMounted, shallowRef } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 const userStore = useUserStore()
+const currentView = shallowRef(null)
 
-const currentView = ref(null)
 
 onMounted(async () => {
   const role = await userStore.getRole()
