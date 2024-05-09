@@ -56,7 +56,6 @@ onMounted(updateLinks)
         </li>
       </RouterLink>
     </ul>
-    <a-spin v-else />
   </aside>
 </template>
 
