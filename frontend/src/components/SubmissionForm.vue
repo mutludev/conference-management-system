@@ -64,7 +64,7 @@ const open = defineModel()
           <a-button><UploadOutlined />Upload</a-button>
         </a-upload>
       </a-form-item>
-      <button type="submit">Submit</button>
+      <button class="submit" type="submit">Submit</button>
     </a-form>
   </a-modal>
 </template>
@@ -82,7 +82,7 @@ h1 {
   color: hsl(0, 0%, 20%);
 }
 
-button {
+.submit {
   width: 100%;
   height: 40px;
   border-radius: 6px;
@@ -91,12 +91,12 @@ button {
   border: none;
 }
 
-button:hover {
+.submit:hover {
   background-color: hsl(11, 100%, 55%);
   cursor: pointer;
 }
 
-button:active {
+.submit:active {
   background-color: hsl(11, 100%, 50%);
 }
 
