@@ -25,6 +25,7 @@ app.use(
     name: "session",
     keys: [process.env.COOKIE_KEY],
     sameSite: "none",
+    secure: true
   })
 );
 
