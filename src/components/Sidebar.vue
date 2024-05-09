@@ -2,11 +2,13 @@
 import { onMounted, ref, watch } from 'vue'
 import { SettingOutlined, LeftOutlined, RightOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import { linkMapping } from '@/utils/linkMapping'
+import { useToast } from 'vue-toastification';
 import { useUserStore } from '@/stores/userStore'
 const userStore = useUserStore()
+const toast = useToast()
 
 const utilLinks = [
-  { name: 'Settings', path: '/settings', icon: SettingOutlined },
+  { name: 'Settings', path: '', icon: SettingOutlined, action: () => {toast.error('Settings is not implemented yet')}},
   { name: 'Logout', path: '', icon: LogoutOutlined, action: logout }
 ]
 
