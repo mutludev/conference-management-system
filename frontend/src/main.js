@@ -15,7 +15,8 @@ pinia.use(({ store }) => {
 })
 app.use(Toast, {
   pauseOnHover: false,
-  timeout: 2000
+  timeout: 2000,
+  maxToasts: 3
 })
 app.use(router)
 app.use(pinia)
