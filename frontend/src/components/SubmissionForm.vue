@@ -10,10 +10,12 @@ let formState = ref({
 function onSubmit(value) {
   console.log(value)
 }
+
+const open = defineModel()
 </script>
 
 <template>
-  <div class="form-wrapper">
+  <a-modal :style="{ width: '800px' }" :footer="null" v-model:open="open" @ok="handleOk">
     <a-form layout="vertical" :model="formState" @finish="onSubmit">
       <h1>Paper Submission Form</h1>
       <hr />
@@ -71,7 +73,7 @@ function onSubmit(value) {
       </a-form-item>
       <button type="submit">Submit</button>
     </a-form>
-  </div>
+  </a-modal>
 </template>
 
 <style scoped>
