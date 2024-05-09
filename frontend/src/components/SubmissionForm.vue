@@ -15,7 +15,7 @@ const open = defineModel()
 </script>
 
 <template>
-  <a-modal :style="{ width: '800px' }" :footer="null" v-model:open="open" @ok="handleOk">
+  <a-modal :style="{ width: '800px' }" :footer="null" v-model:open="open">
     <a-form layout="vertical" :model="formState" @finish="onSubmit">
       <h1>Paper Submission Form</h1>
       <hr />
@@ -58,8 +58,6 @@ const open = defineModel()
           :multiple="false"
           accept=".pdf"
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          @change="handleChange"
-          @drop="handleDrop"
         >
           <a-button><UploadOutlined />Upload</a-button>
         </a-upload>
