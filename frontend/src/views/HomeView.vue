@@ -5,12 +5,14 @@ import AdminView from '../views/AdminView.vue'
 import AttendeeView from '../views/AttendeeView.vue'
 import ReviewerView from '../views/ReviewerView.vue'
 import OrganizerView from '@/views/OrganizerView.vue'
+import AuthorEventView from '@/views/AuthorEventView.vue'
 
 const roleComponentMapping = {
   admin: AdminView,
   attendee: AttendeeView,
   reviewer: ReviewerView,
-  organizer: OrganizerView
+  organizer: OrganizerView,
+  author: AuthorEventView
 }
 
 import { onMounted, ref } from 'vue'
