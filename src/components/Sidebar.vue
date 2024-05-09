@@ -39,7 +39,7 @@ onMounted(updateLinks)
         <RightOutlined v-else />
       </button>
     </div>
-    <ul class="links">
+    <ul class="links" v-if="links.length > 0">
       <RouterLink v-for="link in links" :to="link.path" :key="link.name">
         <li>
           <span class="icon"><component :is="link.icon" /></span>
@@ -54,6 +54,7 @@ onMounted(updateLinks)
         </li>
       </RouterLink>
     </ul>
+    <a-spin v-else />
   </aside>
 </template>
 
