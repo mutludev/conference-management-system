@@ -97,6 +97,7 @@ aside.hidden {
   justify-content: space-between;
   padding: 10px;
   padding-left: 20px;
+  user-select: none;
 }
 
 .logo button {
