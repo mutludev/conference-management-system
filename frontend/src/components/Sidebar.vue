@@ -1,16 +1,11 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
-import { SettingOutlined, LeftOutlined, RightOutlined, LogoutOutlined } from '@ant-design/icons-vue'
+import { UserOutlined, LeftOutlined, RightOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import { linkMapping } from '@/utils/linkMapping'
 import { useToast } from 'vue-toastification';
 import { useUserStore } from '@/stores/userStore'
 const userStore = useUserStore()
 const toast = useToast()
-
-const utilLinks = [
-  { name: 'Settings', path: '', icon: SettingOutlined, action: () => {toast.error('Settings is not implemented yet')}},
-  { name: 'Logout', path: '', icon: LogoutOutlined, action: logout }
-]
 
 const links = ref([])
 const showSidebar = ref(true)
@@ -49,10 +44,16 @@ onMounted(updateLinks)
         </li>
       </RouterLink>
       <div class="space"></div>
-      <RouterLink v-for="link in utilLinks" :to="link.path" @click="link.action" :key="link.name">
+      <RouterLink to="">
         <li>
-          <span class="icon"><component :is="link.icon" /></span>
-          <span v-if="showSidebar" class="link-name">{{ link.name }}</span>
+          <span class="icon"><UserOutlined /></span>
+          <span v-if="showSidebar" class="link-name">{{ userStore.user?.name }}</span>
+        </li>
+      </RouterLink>
+      <RouterLink to="" @click="logout">
+        <li>
+          <span class="icon"><LogoutOutlined /></span>
+          <span v-if="showSidebar" class="link-name">Logout</span>
         </li>
       </RouterLink>
     </ul>
