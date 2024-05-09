@@ -19,6 +19,7 @@ defineProps({
       <div>{{ data.title }}</div>
     </div>
     <div class="right">
+      <PdfModal />
       <ReviewCard />
     </div>
   </div>
