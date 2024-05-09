@@ -36,6 +36,7 @@ onMounted(updateLinks)
         <RightOutlined v-else />
       </button>
     </div>
+    <div class="role" v-if="showSidebar">{{ userStore.user?.role }}</div>
     <ul class="links" v-if="links.length > 0">
       <RouterLink v-for="link in links" :to="link.path" :key="link.name">
         <li>
@@ -155,5 +156,18 @@ aside.hidden {
 
 .space {
   flex-grow: 1;
+}
+
+.role {
+  text-transform: capitalize;
+  padding-inline: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.role::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid hsl(0, 0%, 60%);
 }
 </style>
