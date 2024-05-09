@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.BASE_URI || "http://localhost:5173",
     credentials: true,
   })
 );
