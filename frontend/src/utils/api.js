@@ -2,6 +2,11 @@ import axios from 'axios'
 axios.defaults.baseURL = import.meta.env.VITE_HOST || 'http://localhost:3000/api/'
 axios.defaults.withCredentials = true
 
+const conferenceRoutes = {
+  attendee: '/conference',
+  organizer: '/conference/organizer'
+}
+
 async function login(email, password) {
   try {
     let response = await axios.post('/auth/login', { email, password })
@@ -28,9 +33,9 @@ async function logout() {
   }
 }
 
-async function getConferences() {
+async function getConferences(role) {
   try {
-    let response = await axios.get('/conference')
+    let response = await axios.get(conferenceRoutes[role] || '/conference')
     return response.data
   } catch (error) {
     return Promise.reject(error)

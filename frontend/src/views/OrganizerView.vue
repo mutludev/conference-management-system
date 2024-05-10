@@ -1,17 +1,18 @@
 <script setup>
 import GenericHeader from '@/components/GenericHeader.vue'
 import EventCard from '@/components/EventCard.vue'
-import events from '@/components/events.js'
 import { ref, computed } from 'vue'
 import { useToast } from 'vue-toastification'
+import useConferences from '@/utils/useConferences'
 
 const searchQuery = ref('')
+const { loading, events } = useConferences('organizer')
 
 const filteredEvents = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return events
-  return events.filter((event) => {
-    const titleMatches = event.title.toLowerCase().includes(query)
+  if (!query) return events.value
+  return events.value.filter((event) => {
+    const titleMatches = event.name.toLowerCase().includes(query)
     const locationMatches = event.location.toLowerCase().includes(query)
     const tagMatches = event.tags.some((tag) => tag.toLowerCase().includes(query))
 
@@ -39,12 +40,12 @@ const action = ref([
   }
 ])
 
-const data = {
+const data = computed(() => ({
   title: 'Events',
-  count: events.length,
+  count: events.value.length,
   text: ' events',
   buttonText: 'Add Event'
-}
+}))
 </script>
 
 <template>
@@ -60,7 +61,8 @@ const data = {
     </div>
     <div class="empty" v-else>
       <div>
-        <a-empty />
+        <a-spin v-if="loading" :spinning="loading" tip="Fetching Data" />
+        <a-empty v-else />
       </div>
     </div>
   </div>
