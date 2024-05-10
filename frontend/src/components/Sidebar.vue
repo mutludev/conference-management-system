@@ -30,7 +30,7 @@ async function logout() {
     <div class="role" v-if="showSidebar">{{ userStore.user?.role }}</div>
     <ul class="links" v-if="links.length > 0">
       <a v-for="link in links" :key="link.name" @click="pageStore.changePage(link.path)">
-        <li>
+        <li :class="{ selected: link.path == pageStore.page }">
           <span class="icon"><component :is="link.icon" /></span>
           <span v-if="showSidebar" class="link-name">{{ link.name }}</span>
         </li>
@@ -126,7 +126,8 @@ aside.hidden {
     color: black;
   }
 
-  & li:hover {
+  & li:hover,
+  & li.selected {
     background-color: hsl(7, 100%, 93%);
   }
 
