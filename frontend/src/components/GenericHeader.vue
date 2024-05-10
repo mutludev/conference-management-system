@@ -1,6 +1,6 @@
 <script setup>
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons-vue'
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification'
 
 defineProps({
   data: {

@@ -1,7 +1,7 @@
 <script setup>
 import { UserDeleteOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { h, ref } from 'vue'
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification'
 
 defineProps({
   data: {

@@ -21,7 +21,7 @@ function search(query) {
 const data = {
   title: 'Papers',
   count: papers.length,
-  text: ' papers',
+  text: ' papers'
 }
 </script>
 

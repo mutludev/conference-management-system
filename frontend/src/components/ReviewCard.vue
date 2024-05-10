@@ -1,6 +1,6 @@
 <script setup>
 import { ref, h } from 'vue'
-import {FileSearchOutlined } from '@ant-design/icons-vue'
+import { FileSearchOutlined } from '@ant-design/icons-vue'
 
 const open = ref(false)
 
