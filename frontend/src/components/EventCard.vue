@@ -1,7 +1,7 @@
 <script setup>
 import { CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons-vue'
 import { computed, defineProps } from 'vue'
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification'
 
 const props = defineProps({
   data: {
@@ -30,6 +30,7 @@ const props = defineProps({
 })
 
 let parsedDate = computed(() => {
+  if (!props.data.date) return 'Not Available'
   const date = new Date(props.data.date)
   const dateString = date.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -47,11 +48,13 @@ let parsedDate = computed(() => {
 })
 
 let day = computed(() => {
+  if (!props.data.date) return '--'
   const date = new Date(props.data.date)
   return date.getDate().toString().padStart(2, '0')
 })
 
 let monthAbbr = computed(() => {
+  if (!props.data.date) return 'N/A'
   const date = new Date(props.data.date)
   return date.toLocaleDateString('en-US', {
     month: 'short'
@@ -62,7 +65,7 @@ let monthAbbr = computed(() => {
 <template>
   <div class="card">
     <div class="image-wrapper">
-      <img :src="data.img" alt="Event Image" />
+      <img :src="data.img || 'https://picsum.photos/800/600'" alt="Event Image" />
       <div class="date-box">
         <span class="date">{{ day }}</span>
         <span class="time">{{ monthAbbr }}</span>
@@ -71,7 +74,7 @@ let monthAbbr = computed(() => {
     <div class="tags">
       <span class="tag" v-for="tag in data.tags" :key="tag">{{ tag }}</span>
     </div>
-    <div class="title">{{ data.title }}</div>
+    <div class="title">{{ data.name }}</div>
     <div class="details">
       <div class="location">
         <span class="icon"><EnvironmentOutlined /></span>{{ data.location }}
