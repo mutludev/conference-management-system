@@ -8,8 +8,10 @@ import { useToast } from 'vue-toastification'
 
 const searchQuery = ref('')
 const open = ref(false)
+const conferenceId = ref(null)
 
-function openModal() {
+function openModal(conferenceId) {
+  conferenceId.value = conferenceId
   open.value = true
 }
 
@@ -29,20 +31,6 @@ function search(query) {
   searchQuery.value = query
 }
 
-const action = [
-  {
-    text: 'Submit Paper',
-    func: openModal
-  },
-  {
-    text: 'View Details',
-    func: () => {
-      const toast = useToast()
-      toast.error('View Details is not implemented yet')
-    }
-  }
-]
-
 const data = {
   title: 'Events',
   count: events.length,
@@ -58,7 +46,19 @@ const data = {
         v-for="event in filteredEvents"
         :data="event"
         :key="event.title"
-        :action="action"
+        :action="[
+          {
+            text: 'Submit Paper',
+            func: () => openModal(event.conference)
+          },
+          {
+            text: 'View Details',
+            func: () => {
+              const toast = useToast()
+              toast.error('View Details is not implemented yet')
+            }
+          }
+        ]"
       />
     </div>
     <div class="empty" v-else>
@@ -67,7 +67,7 @@ const data = {
       </div>
     </div>
   </div>
-  <SubmissionForm v-model="open" />
+  <SubmissionForm v-model="open" :conference-id="conferenceId" />
 </template>
 
 <style scoped>

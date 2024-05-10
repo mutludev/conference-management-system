@@ -6,5 +6,6 @@ router.use("/auth", require("./auth"));
 router.use("/conference", require("./conference"));
 router.use("/paper", require("./paper"));
 router.use("/review", require("./review"));
+router.use("/upload", require("./upload"));
 
 module.exports = router;

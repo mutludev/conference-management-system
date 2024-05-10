@@ -51,10 +51,40 @@ async function getMembers() {
   }
 }
 
+async function uploadFile(formData) {
+  try {
+    let response = await axios.post('/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    return response.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
+async function uploadPaper(paper) {
+  try {
+    let response = await axios.post('/paper', {
+      title: paper.title,
+      abstract: paper.abstract,
+      keywords: [],
+      file: paper.paper,
+      conference: paper.conference
+    })
+    return response.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 export default {
   login,
   fetchUser,
   logout,
   getConferences,
-  getMembers
+  getMembers,
+  uploadFile,
+  uploadPaper
 }

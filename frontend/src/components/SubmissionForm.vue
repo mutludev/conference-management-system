@@ -1,17 +1,38 @@
 <script setup>
 import { ref } from 'vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
+import api from '@/utils/api'
+
+const props = defineProps(['conferenceId'])
+
 let formState = ref({
   degreeProgram: '',
   title: '',
   abstract: '',
   paper: ''
 })
-function onSubmit(value) {
-  console.log(value)
+async function onSubmit(value) {
+  const paper = {
+    ...value,
+    conference: props.conferenceId
+  }
+  await api.uploadPaper(paper)
+  open.value = false
 }
 
 const open = defineModel()
+
+async function customRequest({ file, onSuccess }) {
+  const formData = new FormData()
+  formData.append('file', file)
+  try {
+    const data = await api.uploadFile(formData)
+    formState.value.paper = data.fileId
+    onSuccess()
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -52,12 +73,12 @@ const open = defineModel()
         :rules="[{ required: true, message: 'Please upload your paper!' }]"
       >
         <a-upload
-          v-model:value="formState.paper"
           v-model:fileList="fileList"
+          :customRequest="customRequest"
           name="file"
-          :multiple="false"
+          :maxCount="1"
           accept=".pdf"
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          action="http://localhost:3000/api/upload"
         >
           <a-button><UploadOutlined />Upload</a-button>
         </a-upload>
