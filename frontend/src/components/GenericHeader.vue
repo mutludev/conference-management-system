@@ -32,7 +32,9 @@ const error = () => {
           <search-outlined />
         </template>
       </a-input>
-      <a-button class="add-button" v-if="data.buttonText" @click ="error"><PlusOutlined /> {{ data.buttonText }}</a-button>
+      <a-button class="add-button" type="primary" v-if="data.buttonText" @click="error">
+        <PlusOutlined /> {{ data.buttonText }}
+      </a-button>
     </div>
   </div>
 </template>
@@ -71,19 +73,7 @@ const error = () => {
 
 .add-button {
   width: 150px;
-  background-color: hsl(11, 100%, 60%);
-  color: white;
   border: none;
   border-radius: 5px;
-}
-
-.add-button:hover {
-  color: white;
-  background-color: hsl(11, 100%, 55%);
-  cursor: pointer;
-}
-
-.add-button:active {
-  background-color: hsl(11, 100%, 50%);
 }
 </style>

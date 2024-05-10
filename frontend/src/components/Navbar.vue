@@ -34,7 +34,6 @@ button {
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: hsl(11, 100%, 60%);
   border-radius: 50%;
   cursor: pointer;
   border: none;

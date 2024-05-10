@@ -21,7 +21,9 @@ const selectDecision = (decision) => {
 
 <template>
   <div>
-    <a-button class="review" @click="showModal" :icon="h(FileSearchOutlined)">Review</a-button>
+    <a-button class="review" type="primary" @click="showModal" :icon="h(FileSearchOutlined)">
+      Review
+    </a-button>
     <a-modal
       :style="{ width: '600px' }"
       v-model:open="open"
@@ -76,18 +78,6 @@ const selectDecision = (decision) => {
 .review {
   border: none;
   box-shadow: none;
-  background-color: hsl(11 100% 60%);
-  color: white;
-}
-
-.review:hover {
-  background-color: hsl(11 100% 55%);
-  color: white;
-}
-
-.review:active {
-  background-color: hsl(11 100% 50%);
-  color: white;
 }
 
 .choice {

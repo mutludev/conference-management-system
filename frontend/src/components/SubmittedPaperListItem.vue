@@ -40,23 +40,6 @@ defineProps({
   flex-wrap: wrap;
 }
 
-.view {
-  border: none;
-  box-shadow: none;
-  background-color: hsl(11 100% 60%);
-  color: white;
-}
-
-.view:hover {
-  background-color: hsl(11 100% 55%);
-  color: white;
-}
-
-.view:active {
-  background-color: hsl(11 100% 50%);
-  color: white;
-}
-
 .select {
   width: 103px;
 }

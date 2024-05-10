@@ -18,7 +18,7 @@ const handleOk = (e) => {
 
 <template>
   <div>
-    <a-button class="view" @click="showModal"><FileOutlined />View</a-button>
+    <a-button class="view" type="primary" @click="showModal"><FileOutlined />View</a-button>
     <a-modal :style="{ width: '800px' }" v-model:open="open" title="Pdf Viewer" @ok="handleOk">
       <vue-pdf-app style="height: 500px" pdf="/test.pdf"></vue-pdf-app>
     </a-modal>
@@ -29,17 +29,5 @@ const handleOk = (e) => {
 .view {
   border: none;
   box-shadow: none;
-  background-color: hsl(11 100% 60%);
-  color: white;
-}
-
-.view:hover {
-  background-color: hsl(11 100% 55%);
-  color: white;
-}
-
-.view:active {
-  background-color: hsl(11 100% 50%);
-  color: white;
 }
 </style>

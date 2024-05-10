@@ -33,7 +33,7 @@ const error = () => {
           {{ role }}
         </a-select-option>
       </a-select>
-      <a-button class="delete" @click="error" :icon="h(UserDeleteOutlined)" />
+      <a-button class="delete" type="primary" @click="error" :icon="h(UserDeleteOutlined)" />
     </div>
   </div>
 </template>
@@ -70,18 +70,6 @@ const error = () => {
 .delete {
   border: none;
   box-shadow: none;
-  background-color: hsl(11 100% 60%);
-  color: white;
-}
-
-.delete:hover {
-  background-color: hsl(11 100% 55%);
-  color: white;
-}
-
-.delete:active {
-  background-color: hsl(11 100% 50%);
-  color: white;
 }
 
 .email {

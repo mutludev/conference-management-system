@@ -59,7 +59,7 @@ function onSubmit(value) {
           </template>
         </a-input-password>
       </a-form-item>
-      <button class="register-button" type="submit">Register</button>
+      <a-button class="register-button" type="primary" html-type="submit">Register</a-button>
     </a-form>
     <span class="footer">
       Already have an account?&nbsp;
@@ -120,18 +120,7 @@ function onSubmit(value) {
   width: 100%;
   height: 50px;
   border-radius: 15px;
-  color: white;
-  background-color: hsl(11, 100%, 60%);
   border: none;
-}
-
-.register-button:hover {
-  background-color: hsl(11, 100%, 55%);
-  cursor: pointer;
-}
-
-.register-button:active {
-  background-color: hsl(11, 100%, 50%);
 }
 
 .footer {

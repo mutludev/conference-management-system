@@ -59,7 +59,7 @@ async function onSubmit(value) {
           </template>
         </a-input-password>
       </a-form-item>
-      <button class="login-button" type="submit">Log In</button>
+      <a-button class="login-button" type="primary" html-type="submit">Log In</a-button>
     </a-form>
     <div class="footer">
       <a @click="error">Forgot your password?</a>
@@ -120,18 +120,8 @@ async function onSubmit(value) {
   width: 100%;
   height: 50px;
   border-radius: 15px;
-  color: white;
-  background-color: hsl(11, 100%, 60%);
   border: none;
-}
-
-.login-button:hover {
-  background-color: hsl(11, 100%, 55%);
   cursor: pointer;
-}
-
-.login-button:active {
-  background-color: hsl(11, 100%, 50%);
 }
 
 .footer {

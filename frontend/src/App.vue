@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import theme from './utils/theme'
+</script>
 
 <template>
-  <RouterView />
+  <a-config-provider :theme="theme">
+    <RouterView />
+  </a-config-provider>
 </template>
 
 <style scoped></style>
