@@ -28,8 +28,18 @@ async function logout() {
   }
 }
 
+async function getConferences() {
+  try {
+    let response = await axios.get('/conference')
+    return response.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 export default {
   login,
   fetchUser,
-  logout
+  logout,
+  getConferences
 }
