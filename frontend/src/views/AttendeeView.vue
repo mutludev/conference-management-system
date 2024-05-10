@@ -1,16 +1,17 @@
 <script setup>
 import EventCard from '@/components/EventCard.vue'
-import events from '@/components/events.js'
 import { ref, computed } from 'vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
+import useConferences from '@/utils/useConferences'
 
 const searchQuery = ref('')
+const { events, loading } = useConferences()
 
 const filteredEvents = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return events
-  return events.filter((event) => {
-    const titleMatches = event.title.toLowerCase().includes(query)
+  if (!query) return events.value
+  return events.value.filter((event) => {
+    const titleMatches = event.name.toLowerCase().includes(query)
     const locationMatches = event.location.toLowerCase().includes(query)
     const tagMatches = event.tags.some((tag) => tag.toLowerCase().includes(query))
 
@@ -24,11 +25,12 @@ const filteredEvents = computed(() => {
     <template #prefix> <search-outlined /> </template
   ></a-input>
   <div class="events" v-if="filteredEvents.length > 0">
-    <EventCard v-for="event in filteredEvents" :data="event" :key="event.title" />
+    <EventCard v-for="event in filteredEvents" :data="event" :key="event.name" />
   </div>
   <div class="empty" v-else>
     <div>
-      <a-empty />
+      <a-spin v-if="loading" :spinning="loading" tip="Fetching Data" />
+      <a-empty v-else />
     </div>
   </div>
 </template>
