@@ -1,24 +1,24 @@
 <script setup>
 import GenericHeader from '@/components/GenericHeader.vue'
 import EventCard from '@/components/EventCard.vue'
-import events from '@/components/events.js'
 import SubmissionForm from '@/components/SubmissionForm.vue'
 import { ref, computed } from 'vue'
 import { useToast } from 'vue-toastification'
+import useConferences from '@/utils/useConferences'
 
 const searchQuery = ref('')
 const open = ref(false)
 const conferenceId = ref(null)
-
-function openModal(conferenceId) {
-  conferenceId.value = conferenceId
+const { loading, events } = useConferences()
+function openModal(id) {
+  conferenceId.value = id
   open.value = true
 }
 
 const filteredEvents = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return events
-  return events.filter((event) => {
+  if (!query) return events.value
+  return events.value.filter((event) => {
     const titleMatches = event.title.toLowerCase().includes(query)
     const locationMatches = event.location.toLowerCase().includes(query)
     const tagMatches = event.tags.some((tag) => tag.toLowerCase().includes(query))
@@ -31,11 +31,11 @@ function search(query) {
   searchQuery.value = query
 }
 
-const data = {
+const data = computed(() => ({
   title: 'Events',
-  count: events.length,
+  count: events.value.length,
   text: ' events'
-}
+}))
 </script>
 
 <template>
@@ -49,7 +49,7 @@ const data = {
         :action="[
           {
             text: 'Submit Paper',
-            func: () => openModal(event.conference)
+            func: () => openModal(event.id)
           },
           {
             text: 'View Details',
@@ -63,7 +63,8 @@ const data = {
     </div>
     <div class="empty" v-else>
       <div>
-        <a-empty />
+        <a-spin v-if="loading" :spinning="loading" tip="Fetching Data" />
+        <a-empty v-else />
       </div>
     </div>
   </div>
