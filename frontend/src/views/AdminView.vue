@@ -1,14 +1,16 @@
 <script setup>
 import GenericHeader from '@/components/GenericHeader.vue'
 import MemberListItem from '@/components/MemberListItem.vue'
+import useMembers from '@/utils/useMembers'
 import { ref, computed } from 'vue'
 
 const searchQuery = ref('')
+const { loading, members } = useMembers()
 
 const filteredMembers = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return members
-  return members.filter((member) => {
+  if (!query) return members.value
+  return members.value.filter((member) => {
     return member.name.toLowerCase().includes(query)
   })
 })
@@ -16,19 +18,13 @@ const filteredMembers = computed(() => {
 function search(query) {
   searchQuery.value = query
 }
-const members = [
-  { name: 'John Doe', email: 'johndoe@mutlu.dev', role: 'Admin' },
-  { name: 'Jane Doe', email: 'janedoe@mutlu.dev', role: 'Organizer' },
-  { name: 'John Smith', email: 'johnsmith@mutlu.dev', role: 'Reviewer' },
-  { name: 'Jane Smith', email: 'janesmith@mutlu.dev', role: 'Author' }
-]
 
-const data = {
+const data = computed(() => ({
   title: 'Members',
-  count: members.length,
+  count: members.value.length,
   text: ' members',
   buttonText: 'Add Member'
-}
+}))
 </script>
 
 <template>
@@ -44,7 +40,8 @@ const data = {
     </div>
     <div class="empty" v-else>
       <div>
-        <a-empty />
+        <a-spin v-if="loading" :spinning="loading" tip="Fetching Data" />
+        <a-empty v-else />
       </div>
     </div>
   </div>

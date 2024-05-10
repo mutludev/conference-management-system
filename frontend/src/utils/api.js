@@ -42,9 +42,19 @@ async function getConferences(role) {
   }
 }
 
+async function getMembers() {
+  try {
+    let response = await axios.get('/user')
+    return response.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 export default {
   login,
   fetchUser,
   logout,
-  getConferences
+  getConferences,
+  getMembers
 }
