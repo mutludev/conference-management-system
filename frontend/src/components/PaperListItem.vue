@@ -26,7 +26,7 @@ const pdfPath = computed(() => {
     </div>
     <div class="right">
       <PdfModal :path="pdfPath" />
-      <ReviewCard />
+      <ReviewCard :paper="props.data" />
     </div>
   </div>
 </template>

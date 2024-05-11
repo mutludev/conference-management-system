@@ -1,20 +1,34 @@
 <script setup>
-import { ref, h } from 'vue'
+import { ref, h, computed } from 'vue'
 import { FileSearchOutlined } from '@ant-design/icons-vue'
+import { useUserStore } from '@/stores/userStore'
+import api from '@/utils/api'
+const userStore = useUserStore()
 
 const open = ref(false)
 
+const props = defineProps(['paper'])
+console.log(props.paper)
 const showModal = () => {
   open.value = true
 }
 
-const handleSubmit = (e) => {
-  console.log(e)
+const ourReview = computed(() => {
+  return props.paper.reviews.find((review) => review.reviewer === userStore.user._id)
+})
+
+const handleSubmit = async () => {
+  await api.sendReview({
+    paperId: props.paper._id,
+    comment: comment.value,
+    status: selectedDecision.value
+  })
   open.value = false
 }
-
-const selectedDecision = ref(null)
+const comment = ref('')
+const selectedDecision = ref(ourReview.value?.status)
 const selectDecision = (decision) => {
+  if (ourReview.value) return
   selectedDecision.value = decision
 }
 </script>
@@ -30,31 +44,37 @@ const selectDecision = (decision) => {
       title="Review Paper"
       okText="Submit"
       @ok="handleSubmit"
+      :ok-button-props="{ disabled: ourReview }"
     >
       <a-form layout="vertical">
         <a-form-item label="Please leave your feedback below:">
-          <a-textarea :rows="4" />
+          <a-textarea
+            :rows="4"
+            v-model:value="comment"
+            :placeholder="ourReview?.comment"
+            :disabled="ourReview"
+          />
         </a-form-item>
         <a-form-item label="Please make your decision:">
           <div class="status-wrapper">
             <button
               class="choice accept"
-              :class="{ selected: selectedDecision === 'accept' }"
-              @click="selectDecision('accept')"
+              :class="{ selected: selectedDecision === 'accepted' }"
+              @click="selectDecision('accepted')"
             >
               Accept
             </button>
             <button
               class="choice reject"
-              :class="{ selected: selectedDecision === 'reject' }"
-              @click="selectDecision('reject')"
+              :class="{ selected: selectedDecision === 'rejected' }"
+              @click="selectDecision('rejected')"
             >
               Reject
             </button>
             <button
               class="choice revision"
-              :class="{ selected: selectedDecision === 'revision' }"
-              @click="selectDecision('revision')"
+              :class="{ selected: selectedDecision === 'needs-revision' }"
+              @click="selectDecision('needs-revision')"
             >
               Revision
             </button>

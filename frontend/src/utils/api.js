@@ -88,6 +88,19 @@ async function getPapers() {
   }
 }
 
+async function sendReview(paper) {
+  try {
+    let response = await axios.post('/review', {
+      paper: paper.paperId,
+      comment: paper.comment,
+      status: paper.status
+    })
+    return response.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 export default {
   login,
   fetchUser,
@@ -96,5 +109,6 @@ export default {
   getMembers,
   uploadFile,
   uploadPaper,
-  getPapers
+  getPapers,
+  sendReview
 }
