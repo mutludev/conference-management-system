@@ -12,11 +12,11 @@ const filteredEvents = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
   if (!query) return events.value
   return events.value.filter((event) => {
-    const titleMatches = event.name.toLowerCase().includes(query)
+    const nameMatches = event.name.toLowerCase().includes(query)
     const locationMatches = event.location.toLowerCase().includes(query)
     const tagMatches = event.tags.some((tag) => tag.toLowerCase().includes(query))
 
-    return titleMatches || locationMatches || tagMatches
+    return nameMatches || locationMatches || tagMatches
   })
 })
 
