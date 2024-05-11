@@ -7,6 +7,7 @@ const userStore = useUserStore()
 
 const open = ref(false)
 
+const emit = defineEmits(['review'])
 const props = defineProps(['paper'])
 console.log(props.paper)
 const showModal = () => {
@@ -14,15 +15,18 @@ const showModal = () => {
 }
 
 const ourReview = computed(() => {
-  return props.paper.reviews.find((review) => review.reviewer === userStore.user._id)
+  return props.paper.reviews.find((review) => review.reviewer === userStore.user.id)
 })
 
 const handleSubmit = async () => {
-  await api.sendReview({
+  const review = {
     paperId: props.paper._id,
     comment: comment.value,
     status: selectedDecision.value
-  })
+  }
+
+  await api.sendReview(review)
+  emit('review', review)
   open.value = false
 }
 const comment = ref('')

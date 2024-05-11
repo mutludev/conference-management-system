@@ -4,7 +4,7 @@ import PaperListItem from '@/components/PaperListItem.vue'
 import { ref, computed } from 'vue'
 import usePapers from '@/utils/usePapers'
 const searchQuery = ref('')
-const { loading, papers } = usePapers()
+const { loading, papers, reload } = usePapers()
 
 const filteredPapers = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
@@ -34,6 +34,7 @@ const data = computed(() => ({
         v-for="paper in filteredPapers"
         :data="paper"
         :key="paper.title"
+        @review="(review) => reload(review)"
       />
     </div>
     <div class="empty" v-else>

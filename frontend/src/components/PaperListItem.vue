@@ -11,6 +11,8 @@ const props = defineProps({
   }
 })
 
+defineEmits(['review'])
+
 const pdfPath = computed(() => {
   return BASE_URL + 'paper/' + props.data.file + '.pdf'
 })
@@ -26,7 +28,7 @@ const pdfPath = computed(() => {
     </div>
     <div class="right">
       <PdfModal :path="pdfPath" />
-      <ReviewCard :paper="props.data" />
+      <ReviewCard :paper="props.data" @review="(review) => $emit('review', review)" />
     </div>
   </div>
 </template>

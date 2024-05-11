@@ -5,7 +5,7 @@ export default function usePapers(role = 'attendee') {
   const papers = ref([])
   const loading = ref(false)
 
-  onMounted(() => {
+  function fetchPapers() {
     loading.value = true
     api
       .getPapers(role)
@@ -17,11 +17,21 @@ export default function usePapers(role = 'attendee') {
       })
       .finally(() => {
         loading.value = false
+        console.log(papers)
       })
+  }
+
+  onMounted(() => {
+    fetchPapers()
   })
+
+  function reload(review) {
+    fetchPapers()
+  }
 
   return {
     papers,
-    loading
+    loading,
+    reload
   }
 }
