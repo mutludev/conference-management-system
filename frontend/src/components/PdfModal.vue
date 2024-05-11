@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import 'vue3-pdf-app/dist/icons/main.css'
 import { FileOutlined } from '@ant-design/icons-vue'
 import { VuePDF, usePDF } from '@tato30/vue-pdf'
 
