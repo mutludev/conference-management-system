@@ -20,6 +20,7 @@ async function login(email, password) {
   }
   return {
     id: user._id,
+    name: user.name,
     email: user.email,
     role: user.role,
   };
@@ -43,13 +44,23 @@ async function register(userData) {
   await user.save();
   return {
     id: user._id,
+    name: user.name,
     email: user.email,
     role: user.role,
   };
 }
 
 async function getUser(userId) {
-  return await User.findById(userId);
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
 }
 
 module.exports = {
