@@ -79,6 +79,15 @@ async function uploadPaper(paper) {
   }
 }
 
+async function getPapers() {
+  try {
+    let response = await axios.get('/paper')
+    return response.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 export default {
   login,
   fetchUser,
@@ -86,5 +95,6 @@ export default {
   getConferences,
   getMembers,
   uploadFile,
-  uploadPaper
+  uploadPaper,
+  getPapers
 }
