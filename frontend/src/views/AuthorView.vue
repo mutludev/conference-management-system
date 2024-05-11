@@ -34,7 +34,7 @@ const data = computed(() => ({
         class="list-item"
         v-for="paper in filteredPapers"
         :data="paper"
-        :key="paper.title"
+        :key="paper._id"
       />
     </div>
     <div class="empty" v-else>
