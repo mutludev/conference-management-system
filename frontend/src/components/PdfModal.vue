@@ -22,13 +22,21 @@ const handleOk = (e) => {
 <template>
   <div>
     <a-button class="view" type="primary" @click="showModal"><FileOutlined />View</a-button>
-    <a-modal :style="{ width: '800px' }" v-model:open="open" @ok="handleOk" :closable="false">
+    <a-modal
+      :style="{ width: '800px' }"
+      v-model:open="open"
+      @ok="handleOk"
+      :closable="false"
+      :cancelText="''"
+      :footer="null"
+    >
       <div class="pdf">
         <div class="pdf-page" v-for="page in pages" :key="page">
           <VuePDF class="pdf-viewer" :pdf="pdf" :page="page" />
           <hr />
         </div>
       </div>
+      <div class="ok"><a-button type="primary" @click="handleOk">Ok</a-button></div>
     </a-modal>
   </div>
 </template>
@@ -60,5 +68,15 @@ hr {
   display: flex;
   justify-content: center;
   width: 80%;
+}
+.ok {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.ok button {
+  width: 70px;
 }
 </style>
