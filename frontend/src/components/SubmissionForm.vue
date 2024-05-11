@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
 import api from '@/utils/api'
+import { useToast } from 'vue-toastification'
 
 const props = defineProps(['conferenceId'])
+const toast = useToast()
 
 let formState = ref({
   degreeProgram: '',
@@ -18,6 +20,7 @@ async function onSubmit(value) {
   }
   await api.uploadPaper(paper)
   open.value = false
+  toast.success('Paper submitted successfully!')
 }
 
 const open = defineModel()
