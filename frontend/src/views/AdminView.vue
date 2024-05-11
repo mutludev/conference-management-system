@@ -11,7 +11,9 @@ const filteredMembers = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
   if (!query) return members.value
   return members.value.filter((member) => {
-    return member.name.toLowerCase().includes(query)
+    const nameMatches = member.name.toLowerCase().includes(query)
+    const emailMatches = member.email.toLowerCase().includes(query)
+    return nameMatches || emailMatches
   })
 })
 
