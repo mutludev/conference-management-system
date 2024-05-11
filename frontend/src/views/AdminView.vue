@@ -23,7 +23,7 @@ function search(query) {
 
 const data = computed(() => ({
   title: 'Members',
-  count: members.value.length,
+  count: filteredMembers.value.length,
   text: ' members',
   buttonText: 'Add Member'
 }))

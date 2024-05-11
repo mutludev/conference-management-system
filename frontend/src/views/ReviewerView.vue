@@ -20,7 +20,7 @@ function search(query) {
 
 const data = computed(() => ({
   title: 'Papers',
-  count: papers.value.length,
+  count: filteredPapers.value.length,
   text: ' papers'
 }))
 </script>

@@ -42,7 +42,7 @@ const action = ref([
 
 const data = computed(() => ({
   title: 'Events',
-  count: events.value.length,
+  count: filteredEvents.value.length,
   text: ' events',
   buttonText: 'Add Event'
 }))
