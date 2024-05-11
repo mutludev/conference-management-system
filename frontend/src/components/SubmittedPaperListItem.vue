@@ -1,12 +1,19 @@
 <script setup>
 import { FilePdfOutlined } from '@ant-design/icons-vue'
 import PdfModal from './PdfModal.vue'
+import { computed } from 'vue'
 
-defineProps({
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/'
+
+const props = defineProps({
   data: {
     type: Object,
     required: true
   }
+})
+
+const pdfPath = computed(() => {
+  return BASE_URL + 'paper/' + props.data.file + '.pdf'
 })
 </script>
 
@@ -18,7 +25,7 @@ defineProps({
       </a-avatar>
       <div>{{ data.title }}</div>
     </div>
-    <PdfModal />
+    <PdfModal :path="pdfPath" />
   </div>
 </template>
 

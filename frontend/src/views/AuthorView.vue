@@ -2,14 +2,15 @@
 import GenericHeader from '@/components/GenericHeader.vue'
 import SubmittedPaperListItem from '@/components/SubmittedPaperListItem.vue'
 import { ref, computed } from 'vue'
-import papers from '../components/papers'
+import usePapers from '@/utils/usePapers'
 
 const searchQuery = ref('')
+const { loading, papers } = usePapers()
 
 const filteredPapers = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return papers
-  return papers.filter((paper) => {
+  if (!query) return papers.value
+  return papers.value.filter((paper) => {
     return paper.title.toLowerCase().includes(query)
   })
 })
@@ -18,11 +19,11 @@ function search(query) {
   searchQuery.value = query
 }
 
-const data = {
+const data = computed(() => ({
   title: 'Submitted Papers',
-  count: papers.length,
+  count: papers.value.length,
   text: ' papers'
-}
+}))
 </script>
 
 <template>
@@ -38,7 +39,8 @@ const data = {
     </div>
     <div class="empty" v-else>
       <div>
-        <a-empty />
+        <a-spin v-if="loading" :spinning="loading" tip="Fetching Data" />
+        <a-empty v-else />
       </div>
     </div>
   </div>
