@@ -8,12 +8,13 @@ const conferenceSchema = zod.object({
 });
 
 function sanitizeConference(conference) {
-  const { _id, name, location, tags } = conference;
+  const { _id, name, location, tags, date } = conference;
   return {
     id: _id,
     name,
     location,
     tags,
+    date,
   };
 }
 
