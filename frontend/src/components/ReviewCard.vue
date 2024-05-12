@@ -3,6 +3,9 @@ import { ref, h, computed } from 'vue'
 import { FileSearchOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/userStore'
 import api from '@/utils/api'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 const userStore = useUserStore()
 
 const open = ref(false)
@@ -28,6 +31,7 @@ const handleSubmit = async () => {
   await api.sendReview(review)
   emit('review', review)
   open.value = false
+  toast.success('Review submitted successfully!')
 }
 const comment = ref('')
 const selectedDecision = ref(ourReview.value?.status)
