@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useToast } from 'vue-toastification'
+import { usePageStore } from './pageStore'
 import api from '../utils/api'
 const toast = useToast()
 
@@ -11,11 +12,13 @@ export const useUserStore = defineStore({
   }),
   actions: {
     async login(email, password) {
+      const pageStore = usePageStore()
       this.loading = true
       try {
         let response = await api.login(email, password)
         this.user = response
         this.router.push('/')
+        pageStore.changePage('home')
         toast.success('Login successful')
       } catch (error) {
         console.log(error)
