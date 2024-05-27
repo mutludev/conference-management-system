@@ -1,4 +1,22 @@
 {
   "projectName": "conference-management-system",
-  "projectOwner": "mutludev"
+  "projectOwner": "mutludev",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "sultandlen",
+      "name": "Sultan Delen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/99362897?v=4",
+      "profile": "https://github.com/sultandlen",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    }
+  ]
 }
